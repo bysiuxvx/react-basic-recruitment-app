@@ -1,9 +1,9 @@
-import { Divider } from "@mui/material"
 import { Link } from "react-router-dom"
-import Box from "@mui/material/Box"
-import { Typography } from "@mui/material"
+
 import { navigationRoutes } from "../../navigationRoutes"
 import { NavigationItem } from "./NavigationItem"
+
+import { Divider, Typography, Box } from "@mui/material"
 
 import HomeIcon from "@mui/icons-material/Home"
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer"
@@ -11,9 +11,7 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents"
 import GroupsIcon from "@mui/icons-material/Groups"
 import FactCheckIcon from "@mui/icons-material/FactCheck"
 import LocationCityIcon from "@mui/icons-material/LocationCity"
-/*
-  icons can be found in here: https://mui.com/material-ui/material-icons/
- */
+
 export const LeftNavigation = () => {
   return (
     <Box
