@@ -1,16 +1,24 @@
 import * as React from "react"
-import AppBar from "@mui/material/AppBar"
-import Box from "@mui/material/Box"
-import Toolbar from "@mui/material/Toolbar"
-import IconButton from "@mui/material/IconButton"
+
+import { AppBar, Box, Toolbar, IconButton } from "@mui/material"
+
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import SettingsIcon from "@mui/icons-material/Settings"
+
+import logo from "../../SVG/company-logo.svg"
 
 export const TopBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
+          <img
+            src={logo}
+            alt="company logo"
+            style={{
+              width: "12rem",
+            }}
+          />
           <IconButton color="inherit" sx={{ marginLeft: "auto" }}>
             <SettingsIcon />
           </IconButton>
