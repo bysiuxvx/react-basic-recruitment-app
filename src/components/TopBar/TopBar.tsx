@@ -1,16 +1,20 @@
-import * as React from "react"
+import { Box, AppBar, Toolbar, IconButton, Switch } from "@mui/material"
 
-import { AppBar, Box, Toolbar, IconButton } from "@mui/material"
+import { darkTheme } from "../../theme"
+import logo from "../../SVG/company-logo.svg"
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import SettingsIcon from "@mui/icons-material/Settings"
 
-import logo from "../../SVG/company-logo.svg"
-
 export const TopBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        sx={{
+          position: "static",
+          background: darkTheme.appBar.main,
+        }}
+      >
         <Toolbar>
           <img
             src={logo}
@@ -19,7 +23,15 @@ export const TopBar = () => {
               width: "12rem",
             }}
           />
-          <IconButton color="inherit" sx={{ marginLeft: "auto" }}>
+          <Switch
+            sx={{
+              marginLeft: "auto",
+              "& .MuiSwitch-track": {
+                background: "#fefefe",
+              },
+            }}
+          />
+          <IconButton color="inherit">
             <SettingsIcon />
           </IconButton>
           <IconButton color="inherit">
