@@ -1,6 +1,6 @@
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material"
 import { SvgIconComponent } from "@mui/icons-material"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { FC, ReactElement } from "react"
 
 type NavigationItemProp = {
@@ -9,13 +9,41 @@ type NavigationItemProp = {
   label: string
 }
 
+interface NavStyle {
+  isActive: boolean
+}
+
+const NavLinkStyles = ({ isActive }: NavStyle) => {
+  return {
+    textDecoration: "none",
+    background: isActive ? "#faebe5" : "none",
+  }
+}
+
 export const NavigationItem: FC<NavigationItemProp> = ({ to, icon, label }) => {
   return (
-    <Link to={to} style={{ textDecoration: "none" }}>
-      <ListItemButton>
-        <ListItemIcon sx={{ paddingLeft: "1rem" }}>{icon}</ListItemIcon>
-        <ListItemText>{label}</ListItemText>
-      </ListItemButton>
-    </Link>
+    <NavLink
+      to={to}
+      style={NavLinkStyles}
+      children={({ isActive }) => (
+        <ListItemButton sx={{ background: "inherit" }}>
+          <ListItemIcon
+            sx={{
+              paddingLeft: "1rem",
+              color: isActive ? "#ec6033" : "none",
+            }}
+          >
+            {icon}
+          </ListItemIcon>
+          <ListItemText
+            sx={{
+              color: "#0000008a",
+            }}
+          >
+            {label}
+          </ListItemText>
+        </ListItemButton>
+      )}
+    />
   )
 }
