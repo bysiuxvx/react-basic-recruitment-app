@@ -1,3 +1,11 @@
 export const Error404 = () => {
-    return <div>Page not found 404</div>
+  return (
+    <div
+      style={{
+        padding: "50px",
+      }}
+    >
+      Page not found 404
+    </div>
+  )
 }
