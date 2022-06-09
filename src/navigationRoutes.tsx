@@ -1,5 +1,6 @@
 import { DashboardScreen } from "./screens/Dashboard"
 import { SportsScreen } from "./screens/Sports"
+import { Error404 } from "./screens/404"
 
 type NavigationRoute = {
   path: string
@@ -18,18 +19,18 @@ export const navigationRoutes: NavigationRoutes = {
   },
   competitions: {
     path: "/competitions",
-    element: <DashboardScreen />,
+    element: <Error404 />,
   },
   scheduling: {
     path: "/scheduling",
-    element: <DashboardScreen />,
+    element: <Error404 />,
   },
   organisations: {
     path: "/organisations",
-    element: <DashboardScreen />,
+    element: <Error404 />,
   },
   users: {
     path: "/users",
-    element: <DashboardScreen />,
+    element: <Error404 />,
   },
 }
