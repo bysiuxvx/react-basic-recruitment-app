@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom"
-
 import { navigationRoutes } from "../../navigationRoutes"
 import { NavigationItem } from "./NavigationItem"
 
