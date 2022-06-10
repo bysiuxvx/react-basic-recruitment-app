@@ -9,16 +9,16 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents"
 import GroupsIcon from "@mui/icons-material/Groups"
 import FactCheckIcon from "@mui/icons-material/FactCheck"
 import LocationCityIcon from "@mui/icons-material/LocationCity"
-import { darkTheme } from "../../theme"
+import { darkTheme, lightTheme } from "../../theme"
 
 export const LeftNavigation = () => {
   return (
     <Box
       sx={{
-        height: "100%",
+        height: "100vh",
         width: 220,
-        borderRight: 2,
-        borderColor: "#dedede",
+        background: lightTheme.palette.background.paper,
+        boxShadow: "0px 0px 12px -4px rgba(66, 68, 90, 1)",
       }}
     >
       <Box paddingTop={"1.5rem"}>
