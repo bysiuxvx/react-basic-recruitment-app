@@ -16,9 +16,9 @@ export const LeftNavigation = () => {
     <Box
       sx={{
         height: "100vh",
-        width: 220,
         background: lightTheme.palette.background.paper,
         boxShadow: "0px 0px 12px -4px rgba(66, 68, 90, 1)",
+        width: 250,
       }}
     >
       <Box paddingTop={"1.5rem"}>
