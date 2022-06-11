@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-import { Box, Grid, Typography } from "@mui/material"
+import { Box, Grid, Typography, useTheme } from "@mui/material"
 import { darkTheme, lightTheme } from "../theme"
 
 import { DashboardType, DashboardItem } from "../types/dashboard.types"
@@ -12,6 +12,8 @@ interface DashboardData {
 }
 
 const DashboarBody = ({ items, getLink }: DashboardData) => {
+  const theme = useTheme()
+
   return (
     <Grid container spacing={4} padding={8}>
       {/* sprawdz typ!  */}
@@ -25,7 +27,7 @@ const DashboarBody = ({ items, getLink }: DashboardData) => {
         <Grid item xs={items.length} key={item.id}>
           <Box
             sx={{
-              backgroundColor: lightTheme.palette.background.paper,
+              backgroundColor: theme.palette.background.paper,
               boxShadow: "0px 0px 12px -4px rgba(66, 68, 90, 1)",
             }}
           >
@@ -38,7 +40,7 @@ const DashboarBody = ({ items, getLink }: DashboardData) => {
             >
               <Typography
                 sx={{
-                  color: darkTheme.palette.text.primary,
+                  color: theme.palette.text.primary,
                   fontSize: 20,
                 }}
               >
@@ -56,7 +58,7 @@ const DashboarBody = ({ items, getLink }: DashboardData) => {
               <Typography
                 sx={{
                   fontSize: 15,
-                  color: darkTheme.palette.secondary.main,
+                  color: theme.palette.secondary.main,
                   textAlign: "justify",
                 }}
               >
