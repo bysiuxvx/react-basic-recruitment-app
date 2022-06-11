@@ -1,16 +1,16 @@
-import { createTheme, Theme, ThemeOptions } from "@mui/material";
+import { createTheme, Theme, ThemeOptions } from "@mui/material"
 
 export type MsfpTheme = Theme & {
   appBar: {
-    main: string;
-  };
-};
+    main: string
+  }
+}
 
 export type MsfpThemeOptions = ThemeOptions & {
   appBar?: {
-    main?: string;
-  };
-};
+    main?: string
+  }
+}
 
 export const customOverridesLight: MsfpThemeOptions = {
   appBar: {
@@ -25,15 +25,22 @@ export const customOverridesLight: MsfpThemeOptions = {
       main: "#2D2D2D",
       contrastText: "#fff",
     },
+    text: {
+      primary: "#F5F5F5",
+      secondary: "#909090",
+    },
+    info: {
+      main: "#faebe5",
+    },
     background: {
       default: "#F5F5F5",
       paper: "#FFFFFF",
     },
   },
   typography: {
-    fontFamily: ["Roboto","Helvetica","Arial",'sans-serif'].join(',')
-  }
-};
+    fontFamily: ["Roboto", "Helvetica", "Arial", "sans-serif"].join(","),
+  },
+}
 
 export const customOverridesDark: MsfpThemeOptions = {
   appBar: {
@@ -49,6 +56,10 @@ export const customOverridesDark: MsfpThemeOptions = {
     },
     text: {
       primary: "#F5F5F5",
+      secondary: "#F5F5F5",
+    },
+    info: {
+      main: "#272727",
     },
     background: {
       default: "#202020",
@@ -56,9 +67,9 @@ export const customOverridesDark: MsfpThemeOptions = {
     },
   },
   typography: {
-    fontFamily: ["Roboto","Helvetica","Arial",'sans-serif'].join(',')
-  }
-};
+    fontFamily: ["Roboto", "Helvetica", "Arial", "sans-serif"].join(","),
+  },
+}
 
-export const lightTheme = createTheme(customOverridesLight) as MsfpTheme;
-export const darkTheme = createTheme(customOverridesDark) as MsfpTheme;
+export const lightTheme = createTheme(customOverridesLight) as MsfpTheme
+export const darkTheme = createTheme(customOverridesDark) as MsfpTheme
