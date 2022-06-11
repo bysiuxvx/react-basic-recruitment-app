@@ -15,11 +15,27 @@ interface SportsData {
 
 const SportsBody = ({ sports, columns }: SportsData) => {
   return (
-    <Grid container p={8} pl={12}>
-      <Typography fontWeight={"bold"}>Sports</Typography>
-      <Typography pt={2}>{sports.teaser}</Typography>
-      <Grid item>
-        <Box>
+    <Box p={8}>
+      <Typography fontSize={20} fontWeight={"bold"}>
+        Sports
+      </Typography>
+      <Typography fontSize={15} pt={2}>
+        {sports.teaser}
+      </Typography>
+      <Box
+        sx={{
+          marginTop: 5,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Box
+          sx={{
+            flexGrow: 1,
+            maxWidth: "65vw",
+            boxShadow: "0px 0px 12px -4px rgba(66, 68, 90, 1)",
+          }}
+        >
           <Table
             title={"Sports"}
             columns={columns}
@@ -29,8 +45,8 @@ const SportsBody = ({ sports, columns }: SportsData) => {
             }}
           />
         </Box>
-      </Grid>
-    </Grid>
+      </Box>
+    </Box>
   )
 }
 
