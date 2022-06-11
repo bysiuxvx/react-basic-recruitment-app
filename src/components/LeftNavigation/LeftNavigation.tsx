@@ -11,12 +11,21 @@ import FactCheckIcon from "@mui/icons-material/FactCheck"
 import LocationCityIcon from "@mui/icons-material/LocationCity"
 import { darkTheme, lightTheme } from "../../theme"
 
+import makeStyles from "@mui/material"
+
+import { createTheme, Theme, ThemeOptions, useTheme } from "@mui/material"
+
 export const LeftNavigation = () => {
+  // const useStyles = makeStyles((theme: Theme) => ({ ...theme }))
+
+  const theme = useTheme()
+
   return (
     <Box
       sx={{
         height: "100%",
-        background: lightTheme.palette.background.paper,
+        background: theme.palette.background.paper,
+
         boxShadow: "0px 0px 12px -4px rgba(66, 68, 90, 1)",
         width: 250,
       }}
@@ -26,6 +35,7 @@ export const LeftNavigation = () => {
           sx={{
             paddingLeft: "2rem",
           }}
+          color={theme.palette.text.secondary}
         >
           Management
         </Typography>
@@ -51,6 +61,7 @@ export const LeftNavigation = () => {
           sx={{
             paddingLeft: "2rem",
           }}
+          color={theme.palette.text.secondary}
         >
           Planning
         </Typography>
@@ -71,6 +82,7 @@ export const LeftNavigation = () => {
           sx={{
             paddingLeft: "2rem",
           }}
+          color={theme.palette.text.secondary}
         >
           People
         </Typography>
