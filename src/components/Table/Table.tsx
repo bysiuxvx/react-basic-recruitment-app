@@ -10,24 +10,25 @@ import {
   TableHead,
   TableRow as MuiTableRow,
   Typography,
-} from "@mui/material";
-import { CSSProperties, FC, ReactElement } from "react";
-import { TableRow } from "./TableRow";
-import { ModelWithId } from "../../types/table.types";
+  useTheme,
+} from "@mui/material"
+import { CSSProperties, FC, ReactElement } from "react"
+import { TableRow } from "./TableRow"
+import { ModelWithId } from "../../types/table.types"
 
 export type TableColumn<Model> = {
-  id: string;
-  label: string;
-  value: keyof Model | ReactElement;
-  textAlign?: CSSProperties["textAlign"];
-};
+  id: string
+  label: string
+  value: keyof Model | ReactElement
+  textAlign?: CSSProperties["textAlign"]
+}
 
 type TableProps<Model extends ModelWithId> = {
-  columns: TableColumn<Model>[];
-  items: Model[];
-  title: string;
-  ButtonProps?: Pick<ButtonProps, "children" | "onClick">;
-};
+  columns: TableColumn<Model>[]
+  items: Model[]
+  title: string
+  ButtonProps?: Pick<ButtonProps, "children" | "onClick">
+}
 
 export const Table: FC<TableProps<any>> = ({
   columns,
@@ -37,9 +38,18 @@ export const Table: FC<TableProps<any>> = ({
 }) => {
   return (
     <Box>
-      {/*TODO: style to match designs*/}
-      <Paper sx={{}}>
-        <Typography>{title}</Typography>
+      <Paper
+        sx={{
+          backgroundColor: useTheme().palette.secondary.dark,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: 1.5,
+          paddingLeft: 3,
+          paddingRight: 3,
+        }}
+      >
+        <Typography color={useTheme().palette.text.primary}>{title}</Typography>
         {ButtonProps !== undefined && (
           <Button variant={"contained"} {...ButtonProps} />
         )}
@@ -67,5 +77,5 @@ export const Table: FC<TableProps<any>> = ({
         </MuiTable>
       </TableContainer>
     </Box>
-  );
-};
+  )
+}
