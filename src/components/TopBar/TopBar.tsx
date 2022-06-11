@@ -1,12 +1,19 @@
 import { Box, AppBar, Toolbar, IconButton, Switch } from "@mui/material"
 
-import { darkTheme } from "../../theme"
-import logo from "../../SVG/company-logo.svg"
-
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import SettingsIcon from "@mui/icons-material/Settings"
 
-export const TopBar = () => {
+import { darkTheme } from "../../theme"
+
+interface Nav {
+  // toggleTheme: () => void
+  toggleTheme: any
+
+  // toggleTheme?: <ButtonProps, "onClick">
+  // toggleTheme?: Pick<ButtonProps, "children" | "onClick">
+}
+
+export const TopBar = ({ toggleTheme }: Nav) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -17,13 +24,14 @@ export const TopBar = () => {
       >
         <Toolbar>
           <img
-            src={logo}
+            src={"/logo.svg"}
             alt="company logo"
             style={{
               width: "12rem",
             }}
           />
           <Switch
+            onChange={() => toggleTheme()}
             sx={{
               marginLeft: "auto",
               "& .MuiSwitch-track": {
