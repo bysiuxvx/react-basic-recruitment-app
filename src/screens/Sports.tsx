@@ -5,8 +5,6 @@ import { TableColumn } from "../components/Table/Table"
 import { Visibility } from "@mui/icons-material"
 import { getSportById, getSports } from "../service/sports.service"
 
-import { Grid, Table, Typography } from "@mui/material"
-
 import SportsBody from "./SportsBody"
 
 export const SportsScreen = () => {
@@ -40,22 +38,5 @@ export const SportsScreen = () => {
     return <NoResults />
   }
 
-  // return (
-  //   <Grid container p={8} pl={12}>
-  //     <Typography fontWeight={"bold"}>Sports</Typography>
-  //     <Typography pt={2}>{sports.teaser}</Typography>
-
-  //     <Grid item>
-  //     <Table
-  //           title={"Sports"}
-  //           columns={columns}
-  //           items={sports.items}
-  //           ButtonProps={{
-  //             children: "ADD SPORT",
-  //           }}
-  //         />
-  //     </Grid>
-  //   </Grid>
-  // )
   return <SportsBody sports={sports} columns={columns} />
 }
