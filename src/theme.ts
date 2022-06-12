@@ -26,7 +26,7 @@ export const customOverridesLight: MsfpThemeOptions = {
       contrastText: "#fff",
     },
     text: {
-      primary: "#F5F5F5",
+      primary: "#2D2D2D",
       secondary: "#909090",
     },
     info: {
