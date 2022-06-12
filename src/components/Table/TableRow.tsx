@@ -28,8 +28,10 @@ export const TableRow = <Model extends ModelWithId>({
     <MuiTableRow>
       {columns.map((column) => (
         <TableCell
-          sx={{ textAlign: column.textAlign || "left" }}
-          color={theme.palette.text.primary}
+          sx={{
+            textAlign: column.textAlign || "left",
+            color: theme.palette.text.primary,
+          }}
         >
           {getItemContent(column)}
         </TableCell>

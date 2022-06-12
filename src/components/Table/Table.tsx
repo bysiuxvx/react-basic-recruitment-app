@@ -36,11 +36,12 @@ export const Table: FC<TableProps<any>> = ({
   title,
   ButtonProps,
 }) => {
+  const theme = useTheme()
   return (
     <Box>
       <Paper
         sx={{
-          backgroundColor: useTheme().palette.secondary.dark,
+          backgroundColor: theme.palette.secondary.dark,
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -49,12 +50,11 @@ export const Table: FC<TableProps<any>> = ({
           paddingRight: 3,
         }}
       >
-        <Typography color={useTheme().palette.text.primary}>{title}</Typography>
+        <Typography color={"#F5F5F5"}>{title}</Typography>
         {ButtonProps !== undefined && (
           <Button variant={"contained"} {...ButtonProps} />
         )}
       </Paper>
-
       <TableContainer>
         <MuiTable>
           <TableHead>
@@ -62,7 +62,10 @@ export const Table: FC<TableProps<any>> = ({
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
-                  sx={{ textAlign: column.textAlign || "left" }}
+                  sx={{
+                    textAlign: column.textAlign || "left",
+                    color: theme.palette.text.primary,
+                  }}
                 >
                   {column.label}
                 </TableCell>

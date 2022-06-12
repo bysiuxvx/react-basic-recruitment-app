@@ -40,7 +40,7 @@ const DashboarBody = ({ items, getLink }: DashboardData) => {
             >
               <Typography
                 sx={{
-                  color: theme.palette.text.primary,
+                  color: "#F5F5F5",
                   fontSize: 20,
                 }}
               >
