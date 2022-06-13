@@ -12,7 +12,13 @@ import {
   Typography,
   useTheme,
 } from "@mui/material"
-import { CSSProperties, FC, ReactElement } from "react"
+import {
+  CSSProperties,
+  FC,
+  ReactElement,
+  Dispatch,
+  SetStateAction,
+} from "react"
 import { TableRow } from "./TableRow"
 import { ModelWithId } from "../../types/table.types"
 
@@ -21,6 +27,7 @@ export type TableColumn<Model> = {
   label: string
   value: keyof Model | ReactElement
   textAlign?: CSSProperties["textAlign"]
+  action?: (sportId: number) => void
 }
 
 type TableProps<Model extends ModelWithId> = {
@@ -28,6 +35,8 @@ type TableProps<Model extends ModelWithId> = {
   items: Model[]
   title: string
   ButtonProps?: Pick<ButtonProps, "children" | "onClick">
+  activeSport: string | number | undefined
+  setActiveSport: Dispatch<SetStateAction<string | number | undefined>>
 }
 
 export const Table: FC<TableProps<any>> = ({
@@ -35,8 +44,11 @@ export const Table: FC<TableProps<any>> = ({
   items,
   title,
   ButtonProps,
+  activeSport,
+  setActiveSport,
 }) => {
   const theme = useTheme()
+
   return (
     <Box>
       <Paper
@@ -74,7 +86,13 @@ export const Table: FC<TableProps<any>> = ({
           </TableHead>
           <TableBody>
             {items.map((item) => (
-              <TableRow key={item.id} item={item} columns={columns} />
+              <TableRow
+                activeSport={activeSport}
+                setActiveSport={setActiveSport}
+                key={item.id}
+                item={item}
+                columns={columns}
+              />
             ))}
           </TableBody>
         </MuiTable>
