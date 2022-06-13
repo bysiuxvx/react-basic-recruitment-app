@@ -21,6 +21,7 @@ import {
 } from "react"
 import { TableRow } from "./TableRow"
 import { ModelWithId } from "../../types/table.types"
+import { SportType } from "../../types/sports.types"
 
 export type TableColumn<Model> = {
   id: string
@@ -35,6 +36,7 @@ type TableProps<Model extends ModelWithId> = {
   items: Model[]
   title: string
   ButtonProps?: Pick<ButtonProps, "children" | "onClick">
+  getSportId: (id: SportType["id"] | undefined) => void
   activeSport: string | number | undefined
   setActiveSport: Dispatch<SetStateAction<string | number | undefined>>
 }
@@ -46,6 +48,7 @@ export const Table: FC<TableProps<any>> = ({
   ButtonProps,
   activeSport,
   setActiveSport,
+  getSportId,
 }) => {
   const theme = useTheme()
 
@@ -89,6 +92,7 @@ export const Table: FC<TableProps<any>> = ({
               <TableRow
                 activeSport={activeSport}
                 setActiveSport={setActiveSport}
+                getSportId={getSportId}
                 key={item.id}
                 item={item}
                 columns={columns}
