@@ -4,7 +4,9 @@ import { DashboardItem, DashboardType } from "../types/dashboard.types"
 import { NoResults } from "../components/NoResults/NoResults"
 import { getDashboards } from "../service/dashboard.service"
 
-import DashboarBody from "./DashboardBody"
+import { Grid } from "@mui/material"
+
+import DashboardCard from "./DashboardCard"
 
 export const DashboardScreen = () => {
   const [items, setItems] = useState<DashboardType[]>([])
@@ -23,9 +25,8 @@ export const DashboardScreen = () => {
     }
   }
 
-  const fetchDashboardData = async () => await getDashboards()
-
   useEffect(() => {
+    const fetchDashboardData = async () => await getDashboards()
     fetchDashboardData()
       .then((data) => setItems(data))
       .catch((error) => console.log(error))
@@ -35,5 +36,11 @@ export const DashboardScreen = () => {
     return <NoResults />
   }
 
-  return <DashboarBody items={items} getLink={getLinkTo} />
+  return (
+    <Grid container spacing={4} padding={8}>
+      {items.map((item) => (
+        <DashboardCard item={item} getLink={getLinkTo} key={item.id} />
+      ))}
+    </Grid>
+  )
 }
