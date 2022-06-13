@@ -1,7 +1,7 @@
-import { DashboardItem, DashboardType } from "../types/dashboard.types";
+import { DashboardItem, DashboardType } from "../types/dashboard.types"
 
 export const getDashboards = async (): Promise<DashboardType[]> =>
-  await ([
+  await [
     {
       id: DashboardItem.DASHBOARD,
       title: "Dashboard",
@@ -32,4 +32,4 @@ export const getDashboards = async (): Promise<DashboardType[]> =>
       title: "Users",
       text: "Suspendisse tincidunt convallis pellentesque. Praesent pharetra viverra euismod. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut lobortis vulputate vestibulum. Phasellus nec orci scelerisque, malesuada mi vel, porta dui. Donec interdum augue a magna dignissim mollis non quis libero. In hac habitasse platea dictumst. Etiam eget libero aliquet, ornare nibh sed, dignissim arcu. Nulla condimentum feugiat libero sed posuere. Vivamus lobortis, nulla sit amet lacinia tristique, nisi elit malesuada felis, eu congue tortor tortor sed augue. Sed consequat dui eu aliquet efficitur. Nunc sodales ante non ante ullamcorper interdum. Sed orci ligula, iaculis et lorem eu, facilisis efficitur enim.",
     },
-  ]);
+  ]
