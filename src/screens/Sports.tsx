@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { SportsType, SportType } from "../types/sports.types"
+import { SportsType, SportType, SportTypeCreation } from "../types/sports.types"
 import { NoResults } from "../components/NoResults/NoResults"
 import { TableColumn } from "../components/Table/Table"
 import { Visibility } from "@mui/icons-material"
@@ -7,16 +7,20 @@ import { getSportById, getSports } from "../service/sports.service"
 
 import { Table } from "../components/Table/Table"
 
-import { Box, Grid, Typography, useTheme } from "@mui/material"
+import { Box, Typography, useTheme } from "@mui/material"
+import SportDetails from "../components/Sports/SportDetails"
+import AddSportsForm from "../components/Sports/AddSportsForm"
 
 export const SportsScreen = () => {
-  const [sports, setSports] = useState<SportsType | undefined>(undefined)
+  const [sports, setSports] = useState<SportsType>({ teaser: "", items: [] })
   const [sportDetails, setSportDetails] = useState<SportType | undefined>(
     undefined
   )
   const [activeSport, setActiveSport] = useState<string | number | undefined>(
     undefined
   )
+  const [sportId, setSportId] = useState<SportType["id"] | undefined>(undefined)
+  const [addFormIsActive, setAddFormIsActive] = useState<boolean>(false)
 
   const theme = useTheme()
 
@@ -35,6 +39,17 @@ export const SportsScreen = () => {
     },
   ]
 
+  const getSportId = (id: SportType["id"] | undefined) => {
+    setSportId(id)
+  }
+
+  const handleSportsForm = (newSport: SportTypeCreation) => {
+    sports.items.push({
+      ...newSport,
+      id: sports.items.length + 1, //normally I'd use UUID, but I didnt want to import any additional library
+    })
+  }
+
   const getSportDetails = async (id: SportType["id"]) =>
     await getSportById(id).then((res) => setSportDetails(res))
 
@@ -45,14 +60,26 @@ export const SportsScreen = () => {
       .catch((error) => console.log(error))
   }, [setSports])
 
-  useEffect(() => {})
+  useEffect(() => {
+    if (sportId) getSportDetails(sportId)
+  }, [sportId])
+
+  useEffect(() => {
+    if (activeSport !== undefined) setAddFormIsActive(false)
+  }, [activeSport])
+
+  useEffect(() => {
+    if (addFormIsActive) {
+      setSportDetails(undefined)
+    }
+  }, [addFormIsActive])
 
   if (!sports) {
     return <NoResults />
   }
 
   return (
-    <Grid container p={8}>
+    <Box p={8}>
       <Typography
         fontSize={20}
         fontWeight={"bold"}
@@ -70,8 +97,7 @@ export const SportsScreen = () => {
           justifyContent: "center",
         }}
       >
-        <Grid
-          item
+        <Box
           sx={{
             flexGrow: 1,
             maxWidth: "65vw",
@@ -83,18 +109,22 @@ export const SportsScreen = () => {
             columns={columns}
             items={sports.items}
             activeSport={activeSport}
+            getSportId={getSportId}
             setActiveSport={setActiveSport}
             ButtonProps={{
               children: "ADD SPORT",
+              onClick: () => setAddFormIsActive(true),
             }}
           />
-        </Grid>
-        {sportDetails && (
-          <Grid item sx={{ flexGrow: 1 }}>
-            {/* {sportDetails} */}
-          </Grid>
+        </Box>
+        {sportDetails && <SportDetails sportDetails={sportDetails} />}
+        {addFormIsActive && (
+          <AddSportsForm
+            handleSubmit={handleSportsForm}
+            setAddFormIsActive={setAddFormIsActive}
+          />
         )}
       </Box>
-    </Grid>
+    </Box>
   )
 }
