@@ -1,4 +1,4 @@
-import { SportType } from "../types/sports.types"
+import { SportType } from "../../types/sports.types"
 
 import { Grid, Box, Paper, Typography, useTheme } from "@mui/material"
 

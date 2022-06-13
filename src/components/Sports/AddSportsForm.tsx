@@ -9,7 +9,7 @@ import {
   TextareaAutosize,
   useTheme,
 } from "@mui/material"
-import { SportTypeCreation } from "../types/sports.types"
+import { SportTypeCreation } from "../../types/sports.types"
 
 interface SportsForm {
   handleSubmit: (newSport: SportTypeCreation) => void
@@ -33,8 +33,10 @@ const AddSportsForm = ({ handleSubmit, setAddFormIsActive }: SportsForm) => {
 
   const onSubmit = () => {
     if ([name, location, description].some((el) => !el)) return
-    handleSubmit({ name, location, description })
-    alert(`Name: ${name}, locaton: ${location}, description: ${description}`)
+    handleSubmit({ name, location, description, shortDescription })
+    alert(
+      `Name: ${name}, locaton: ${location}, short description: ${shortDescription}, description: ${description}`
+    )
     cancelFormAction()
   }
 
