@@ -7,6 +7,8 @@ import { darkTheme, lightTheme } from "./theme"
 import { Error404 } from "./screens/404"
 import { navigationRoutes } from "./navigationRoutes"
 
+import PageInfo from "./components/PageInfo"
+
 import CssBaseline from "@mui/material/CssBaseline"
 import "./App.css"
 
@@ -47,6 +49,7 @@ function App() {
               backgroundColor: theme.palette.background.default,
             }}
           >
+            <PageInfo />
             <Routes>
               {Object.values(navigationRoutes).map((route) => (
                 <Route
