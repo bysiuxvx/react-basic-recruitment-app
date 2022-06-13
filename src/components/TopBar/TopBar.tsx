@@ -1,4 +1,14 @@
-import { Box, AppBar, Toolbar, IconButton, Switch } from "@mui/material"
+import { useState, useEffect } from "react"
+
+import {
+  Box,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Switch,
+  useTheme,
+  PaletteMode,
+} from "@mui/material"
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import SettingsIcon from "@mui/icons-material/Settings"
@@ -6,14 +16,20 @@ import SettingsIcon from "@mui/icons-material/Settings"
 import { darkTheme } from "../../theme"
 
 interface Nav {
-  // toggleTheme: () => void
-  toggleTheme: any
-
-  // toggleTheme?: <ButtonProps, "onClick">
-  // toggleTheme?: Pick<ButtonProps, "children" | "onClick">
+  toggleTheme: (mode: PaletteMode) => void
 }
 
 export const TopBar = ({ toggleTheme }: Nav) => {
+  const [checked, setChecked] = useState(false)
+
+  useEffect(() => {
+    if (checked) {
+      toggleTheme("dark")
+    } else {
+      toggleTheme("light")
+    }
+  }, [checked, toggleTheme])
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -31,7 +47,10 @@ export const TopBar = ({ toggleTheme }: Nav) => {
             }}
           />
           <Switch
-            onChange={() => toggleTheme()}
+            checked={checked}
+            onChange={() => {
+              setChecked(!checked)
+            }}
             sx={{
               marginLeft: "auto",
               "& .MuiSwitch-track": {
