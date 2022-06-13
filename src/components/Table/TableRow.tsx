@@ -12,6 +12,7 @@ import {
   IconButton,
 } from "@mui/material"
 import { TableColumn } from "./Table"
+import { SportType } from "../../types/sports.types"
 import { ModelWithId } from "../../types/table.types"
 
 type TableRowProps<Model> = {
@@ -19,6 +20,7 @@ type TableRowProps<Model> = {
   columns: TableColumn<Model>[]
   activeSport: string | number | undefined
   setActiveSport: Dispatch<SetStateAction<string | number | undefined>>
+  getSportId: (id: SportType["id"] | undefined) => void
 }
 
 export const TableRow = <Model extends ModelWithId>({
@@ -26,6 +28,7 @@ export const TableRow = <Model extends ModelWithId>({
   columns,
   setActiveSport,
   activeSport,
+  getSportId,
 }: TableRowProps<Model>): JSX.Element => {
   const theme = useTheme()
 
@@ -34,8 +37,6 @@ export const TableRow = <Model extends ModelWithId>({
   useEffect(() => {
     if (activeSport && item["id"] !== activeSport) setIconActive(false)
   }, [activeSport, item])
-
-  const test = theme.palette.secondary.contrastText
 
   const getItemContent = (
     column: TableColumn<Model>
@@ -47,6 +48,7 @@ export const TableRow = <Model extends ModelWithId>({
           onClick={() => {
             setActiveSport(item["id"])
             setIconActive(true)
+            getSportId(Number(item["id"]))
           }}
         >
           {/* {activeSport} */}
@@ -59,12 +61,18 @@ export const TableRow = <Model extends ModelWithId>({
   }
 
   return (
-    <MuiTableRow>
+    <MuiTableRow
+      sx={{
+        backgroundColor:
+          item.id === activeSport ? theme.palette.background.paper : undefined,
+      }}
+    >
       {columns.map((column) => (
         <TableCell
           onClick={() => {
             setActiveSport(item["id"])
             setIconActive(true)
+            getSportId(Number(item["id"]))
           }}
           sx={{
             textAlign: column.textAlign || "left",
