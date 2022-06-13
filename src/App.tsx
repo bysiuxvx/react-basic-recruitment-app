@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import "./App.css"
+import { useState } from "react"
 import { Grid, PaletteMode, ThemeProvider } from "@mui/material"
 import { TopBar } from "./components/TopBar/TopBar"
 import { LeftNavigation } from "./components/LeftNavigation/LeftNavigation"
@@ -9,6 +8,7 @@ import { Error404 } from "./screens/404"
 import { navigationRoutes } from "./navigationRoutes"
 
 import CssBaseline from "@mui/material/CssBaseline"
+import "./App.css"
 
 function App() {
   const [theme, setTheme] = useState(lightTheme)
@@ -24,13 +24,29 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <TopBar />
+        <TopBar toggleTheme={toggleTheme} />
 
-        <Grid container>
-          <Grid item sx={{ width: 200 }}>
+        <Grid
+          container
+          sx={{
+            height: "100vh",
+          }}
+        >
+          <Grid
+            item
+            sx={{
+              paddingRight: 2,
+            }}
+          >
             <LeftNavigation />
           </Grid>
-          <Grid item xs>
+          <Grid
+            item
+            xs
+            sx={{
+              backgroundColor: theme.palette.background.default,
+            }}
+          >
             <Routes>
               {Object.values(navigationRoutes).map((route) => (
                 <Route
